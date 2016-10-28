@@ -34,3 +34,4 @@
 
 # Mac files
 .DS_Store
+*.vscode*
