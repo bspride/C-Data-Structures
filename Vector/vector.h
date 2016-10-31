@@ -1,26 +1,26 @@
 #include <assert.h>
 #include <stdbool.h>
 
-const int VECTOR_INITIAL_CAPACITY = 16;
+const int VECTOR_INITIAL_SIZE = 16;
 const int GROWTH_FACTOR = 2;
 const int SHRINK_FACTOR = 4;
 
 typedef struct {
+  int numElements;
   int size;
-  int capacity;
   int *data;
 } Vector;
 
 void vector_init(Vector *vector);
 
-/* Number of items */
+/* Number of items*/
+int vector_numElements(Vector *vector);
+
+int determine_size(int size);
+void resize_for_numElements(Vector *vector, int numElements);
+
+/* Vector size */
 int vector_size(Vector *vector);
-
-int determine_capacity(int capacity);
-void resize_for_size(Vector *vector, int size);
-
-/* Vector capacity */
-int vector_capacity(Vector *vector);
 
 /* Vector is empty */
 bool vector_is_empty(Vector *vector);
