@@ -7,7 +7,7 @@ const int SHRINK_FACTOR = 4;
 
 typedef struct {
   int numElements;
-  int size;
+  int capacity;
   int *data;
 } Vector;
 
