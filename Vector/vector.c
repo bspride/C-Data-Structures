@@ -29,7 +29,6 @@ int determine_capacity(int capacity) {
   return true_capacity;
 }
 
-// TODO: Need to double capacity or when popping an item, if size is 1/4 of capacity, resize to half
 void resize_for_numElements(Vector *vector, int numElements) {
   if(vector->numElements < numElements) {
     while(vector->numElements < numElements) {
@@ -68,7 +67,6 @@ void vector_push(Vector *vector, int value) {
   ++(vector->numElements);
 }
 
-// TODO: Insert using pointer, shift array over
 void vector_insert(Vector *vector, int index, int value) {
   if (index < 0 ) {
     printf("Index %d out of bounds for vector", index;
