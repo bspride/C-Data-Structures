@@ -32,9 +32,14 @@ int determine_capacity(int capacity) {
 // TODO: Need to double capacity or when popping an item, if size is 1/4 of capacity, resize to half
 void resize_for_numElements(Vector *vector, int numElements) {
   if(vector->numElements < numElements) {
-    vector->capacity *= 2;
-    vector->data = realloc(vector->data, numElementsof(int) * vector->capacity);
-  } else if
+    while(vector->numElements < numElements) {
+      vector->capacity *= 2;
+      vector->data = realloc(vector->data, sizeof(int) * vector_capacity(vector));
+    }
+  } else if(vector->numElements > numElements / SHRINK_FACTOR) {
+    vector->capacity /= 2;
+    vector->data = realloc(vector->data, sizeof(int)*vector_capacity(vector));
+  }
 }
 
 int vector_capacity(Vector *vector) {
@@ -63,14 +68,14 @@ void vector_push(Vector *vector, int value) {
   ++(vector->numElements);
 }
 
-// TODO: Double capacity if full, then resize array until able to insert at appropriate position, then insert
+// TODO: Insert using pointer, shift array over
 void vector_insert(Vector *vector, int index, int value) {
   if (index < 0 ) {
     printf("Index %d out of bounds for vector", index;
     exit(EXIT_FAILURE);
   }
-  resize_for_numElements(vector, vector->numElements + 1);
-  vector->data[index] = value;
+  resize_for_numElements(vector, index + 1);
+  *(vector->data + index) = value;
   vector->numElements++;
 }
 
