@@ -215,4 +215,23 @@ void reverse(linkedlist *ll) {
 }
 
 // removes the first item in the list with this value
-void remove_value(linkedlist *ll, int value);
+void remove_value(linkedlist *ll, int value) {
+  node_t *prev;
+  node_t *current;
+  current = ll->head;
+  while(current != NULL) {
+    if(current->value == value) {
+      if(prev == NULL) {
+        ll->head = current->next;
+      } else {
+        prev->next = current->next;
+      }
+      free(current);
+      ll->length--;
+      break;
+    } else {
+      prev = current;
+      current = current->next;
+    }
+  }
+}
