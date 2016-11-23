@@ -185,7 +185,18 @@ void erase(linkedlist *ll, int index) {
 }
 
 // returns the value of the node at nth position from the end of the list
-int value_n_from_end(linkedlist *ll, int n);
+int value_n_from_end(linkedlist *ll, int n) {
+  if(n >= ll->length) {
+    exit(EXIT_FAILURE);
+  }
+  node_t *current;
+  current = ll->head;
+  for(int i = 0; i < ll->length - n - 1; i++) {
+    current = current->next;
+  }
+
+  return current->value;
+}
 
 // reverses the list
 void reverse(linkedlist *ll);
