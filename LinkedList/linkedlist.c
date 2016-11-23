@@ -92,6 +92,7 @@ void push_back(linkedlist *ll, int value) {
 // removes end item and returns its value
 int pop_back(linkedlist *ll) {
   node_t *current;
+  node_t *prev;
 
   if(ll->head == NULL) {
     exit(EXIT_FAILURE);
@@ -101,25 +102,43 @@ int pop_back(linkedlist *ll) {
   } else {
     current = ll->head;
     while(current->next != NULL) {
+      prev = current;
       current = current->next;
     }
+    prev->next = NULL;
   }
   int value = current->value;
 
   free(current);
 
+  ll->length--;
   return value;
 }
 
 // get value of front item
 int front(linkedlist *ll) {
   if(ll->head == NULL) {
-    return -1;
+    exit(EXIT_FAILURE);
+  } else {
+    return ll->head->value;
   }
 }
 
 // get value of an end item
-int back(linkedlist *ll);
+int back(linkedlist *ll) {
+  node_t *current;
+
+  if(ll->length == 0) {
+    exit(EXIT_FAILURE);
+  } else {
+    current = ll->head;
+    while(current->next != NULL) {
+      current = current->next;
+    }
+  }
+
+  return current->value;
+}
 
 // insert value at index, so current item at that index is pointed to by new item at index
 void insert(linkedlist *ll, int index, int value);
