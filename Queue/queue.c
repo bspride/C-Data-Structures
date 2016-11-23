@@ -8,7 +8,7 @@ void queue_init(queue *q, int size) {
 
 // Adds item at end of available storage
 void enqueue(queue *q, int value) {
-  if(q->size == q->capacity) {
+  if(full(q)) {
     exit(EXIT_FAILURE);
   }
 
@@ -18,9 +18,11 @@ void enqueue(queue *q, int value) {
 
 // Returns value and removes least recently added element
 int dequeue(queue *q) {
-  if(q->size == 0) {
+  if(empty(q)) {
     exit(EXIT_FAILURE);
   }
+  memmove(&q->data[1], &q->data[0], (q->size - 2) * size_of(int));
+  q->size--;
 }
 
 // Checks if queue is empty
