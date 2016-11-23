@@ -5,11 +5,14 @@ typedef struct Node {
 
 typedef struct Queue{
   int *head;
+  int *tail;
   int size;
 } queue;
 
 // adds value at position at tail
-void enqueue(queue *q, int value);
+void enqueue(queue *q, int value) {
+
+}
 
 // returns value and removes least recently added element (front)
 int dequeue(queue *q);

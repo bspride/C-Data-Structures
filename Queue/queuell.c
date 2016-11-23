@@ -3,6 +3,7 @@
 void queue_init(queue *q) {
   q->size = 0;
   q->head = NULL;
+  q->tail = NULL;
 }
 
 // adds value at position at tail
@@ -16,5 +17,5 @@ int dequeue(queue *q) {
 }
 
 bool empty(queue *q) {
-  
+
 }
