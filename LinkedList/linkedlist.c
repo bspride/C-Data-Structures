@@ -199,7 +199,20 @@ int value_n_from_end(linkedlist *ll, int n) {
 }
 
 // reverses the list
-void reverse(linkedlist *ll);
+void reverse(linkedlist *ll) {
+  node_t reverse;
+  node_t current;
+  node_t temp;
+  current = ll->head;
+  while(current != NULL) {
+    temp = current->next;
+    current->next = reverse;
+    reverse = current;
+    current = temp;
+  }
+
+  ll->head = reverse;
+}
 
 // removes the first item in the list with this value
 void remove_value(linkedlist *ll, int value);
