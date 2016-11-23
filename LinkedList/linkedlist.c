@@ -141,10 +141,48 @@ int back(linkedlist *ll) {
 }
 
 // insert value at index, so current item at that index is pointed to by new item at index
-void insert(linkedlist *ll, int index, int value);
+void insert(linkedlist *ll, int index, int value) {
+  if(ll->length - 1 < index) {
+    exit(EXIT_FAILURE);
+  }
+
+  node_t *insert = malloc(size_of(node_t));
+  insert->value = value;
+
+  node_t *current;
+  current = ll->head;
+  for(int i = 0; i < index - 1; i++) {
+    current = current->next;
+  }
+
+  insert->next = current->next;
+  current->next = insert;
+  ll->length++;
+}
 
 // removes node at given index
-void erase(linkedlist *ll, int index);
+void erase(linkedlist *ll, int index) {
+  node_t *erase;
+
+  if(ll->length - 1 < index) {
+    exit(EXIT_FAILURE);
+  } else if(index == 0) {
+    erase = ll->head;
+    ll->head = erase->next;
+  } else {
+    node_t *prev;
+    erase = ll->head;
+    for(int i = 0; i < index; i++) {
+      prev = erase;
+      erase = erase->next;
+    }
+
+    prev->next = erase->next;
+  }
+
+  free(erase);
+  ll->length--;
+}
 
 // returns the value of the node at nth position from the end of the list
 int value_n_from_end(linkedlist *ll, int n);
