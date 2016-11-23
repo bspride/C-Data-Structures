@@ -1,7 +1,7 @@
 typedef struct node {
   int value;
   struct node *next;
-};
+} node_t;
 
 typedef struct {
   struct node *head;
