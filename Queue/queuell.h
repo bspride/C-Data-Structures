@@ -6,7 +6,6 @@ typedef struct Node {
 typedef struct Queue{
   int *head;
   int *tail;
-  int size;
 } queue;
 
 // adds value at position at tail
