@@ -36,16 +36,80 @@ int value_at(linkedlist *ll, int index) {
 }
 
 // adds an item to the front of the list
-void push_front(linkedlist *ll, int value);
+void push_front(linkedlist *ll, int value) {
+  node_t *current;
+
+  node_t *insert = malloc(size_of(node_t));
+  insert->value = value;
+
+  if(ll->head == NULL) {
+    ll->head = insert;
+  } else {
+    current = ll->head;
+    ll->head = insert;
+    insert->next = current;
+  }
+
+  ll->length++;
+}
 
 // remove front item and return its value
-int pop_front(linkedlist *ll);
+int pop_front(linkedlist *ll) {
+  node_t *current;
+  if(ll->head == NULL) {
+    return -1;
+  } else {
+    current = ll->head;
+    ll->head = current->next;
+    ll->length--;
+  }
+
+  int value = current->value;
+  free(current);
+
+  return value;
+}
 
 // adds an item at the end
-void push_back(linkedlist *ll, int value);
+void push_back(linkedlist *ll, int value) {
+  node_t *current;
+  node_t *insert = malloc(size_of(node_t));
+  insert->value = value;
+
+  if(ll->head == NULL) {
+    ll->head = insert;
+  } else {
+    current = ll->head;
+    while(current->next != null) {
+      current = current->next;
+    }
+    current->next = insert;
+  }
+
+  ll->length++;
+}
 
 // removes end item and returns its value
-int pop_back(linkedlist *ll);
+int pop_back(linkedlist *ll) {
+  node_t *current;
+
+  if(ll->head == NULL) {
+    return -1;
+  } else if(ll->length == 1){
+    current = ll->head;
+    ll->head = null;
+  } else {
+    current = ll->head;
+    while(current->next != NULL) {
+      current = current->next;
+    }
+  }
+  int value = current->value;
+
+  free(current);
+
+  return value;
+}
 
 // get value of front item
 int front(linkedlist *ll);
