@@ -32,7 +32,7 @@ int value_at(linkedlist *ll, int index) {
     }
   }
 
-  return NULL;
+  exit(EXIT_FAILURE);
 }
 
 // adds an item to the front of the list
@@ -57,7 +57,7 @@ void push_front(linkedlist *ll, int value) {
 int pop_front(linkedlist *ll) {
   node_t *current;
   if(ll->head == NULL) {
-    return -1;
+    exit(EXIT_FAILURE);
   } else {
     current = ll->head;
     ll->head = current->next;
@@ -94,7 +94,7 @@ int pop_back(linkedlist *ll) {
   node_t *current;
 
   if(ll->head == NULL) {
-    return -1;
+    exit(EXIT_FAILURE);
   } else if(ll->length == 1){
     current = ll->head;
     ll->head = null;
@@ -112,7 +112,11 @@ int pop_back(linkedlist *ll) {
 }
 
 // get value of front item
-int front(linkedlist *ll);
+int front(linkedlist *ll) {
+  if(ll->head == NULL) {
+    return -1;
+  }
+}
 
 // get value of an end item
 int back(linkedlist *ll);
