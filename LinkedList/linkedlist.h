@@ -5,7 +5,6 @@ typedef struct node {
 
 typedef struct {
   struct node *head;
-  struct node *tail;
   int length;
 } linkedlist;
 
